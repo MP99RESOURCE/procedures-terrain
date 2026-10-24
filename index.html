@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#1f3864">
+  <title>Procédures terrain</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icones/app-192.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ===================== ÉCRAN 1 : ACCUEIL ===================== -->
+  <section id="ecran-accueil" class="ecran">
+    <header class="barre">
+      <h1>Procédures terrain</h1>
+    </header>
+    <main class="contenu">
+      <button id="btn-nouvelle-procedure" class="btn btn-principal btn-geant">＋ Nouvelle procédure</button>
+      <h2>Brouillons en cours</h2>
+      <div id="liste-brouillons"></div>
+    </main>
+  </section>
+
+  <!-- ===================== ÉCRAN 2 : PROCÉDURE ===================== -->
+  <section id="ecran-procedure" class="ecran" hidden>
+    <header class="barre">
+      <button id="btn-retour" class="btn btn-barre">← Brouillons</button>
+      <span id="etat-sauvegarde" class="etat-sauvegarde"></span>
+    </header>
+
+    <main class="contenu">
+      <!-- En-tête de la procédure -->
+      <details id="bloc-entete" class="carte" open>
+        <summary>En-tête de la procédure</summary>
+        <label>Titre <span class="obligatoire">(obligatoire)</span>
+          <input id="champ-titre" data-champ="titre" type="text" autocomplete="off" placeholder="Ex. : Remplacement courroie convoyeur">
+        </label>
+        <label>Équipement
+          <input id="champ-equipement" data-champ="equipement" type="text" list="liste-equipements" autocomplete="off" placeholder="Choisir ou écrire">
+          <datalist id="liste-equipements"></datalist>
+        </label>
+        <label>Auteur
+          <input id="champ-auteur" data-champ="auteur" type="text" autocomplete="name" placeholder="Prénom Nom">
+        </label>
+        <label id="ligne-outillage">Outillage / pièces nécessaires
+          <textarea data-champ="outillage" rows="2"></textarea>
+        </label>
+        <label id="ligne-duree">Durée estimée
+          <input data-champ="duree" type="text" placeholder="Ex. : 45 min">
+        </label>
+        <p class="discret">Date : <span id="texte-date"></span></p>
+      </details>
+
+      <!-- Les étapes -->
+      <div id="liste-etapes"></div>
+      <p id="aide-etapes" class="aide">Touchez <strong>📷 Nouvelle étape</strong> pour photographier la première étape.</p>
+
+      <button id="btn-supprimer-procedure" class="btn btn-danger-discret">Supprimer ce brouillon</button>
+    </main>
+
+    <!-- Barre du bas, toujours visible -->
+    <footer class="barre-bas">
+      <button id="btn-nouvelle-etape" class="btn btn-principal">📷 Nouvelle étape</button>
+      <button id="btn-exporter" class="btn btn-secondaire">📄 Word</button>
+    </footer>
+  </section>
+
+  <!-- ===================== FENÊTRE : EXPORT ===================== -->
+  <div id="fenetre-export" class="voile" hidden>
+    <div class="fenetre">
+      <div id="export-en-cours">
+        <p class="grand">Création du document Word…</p>
+        <div class="sablier"></div>
+      </div>
+      <div id="export-pret" hidden>
+        <p class="grand">✅ Document prêt</p>
+        <p id="export-nom" class="nom-fichier"></p>
+        <button id="btn-partager" class="btn btn-principal" hidden>Partager (Outlook, Teams…)</button>
+        <button id="btn-telecharger" class="btn btn-principal">⬇ Enregistrer le Word</button>
+        <p id="export-aide" class="aide">
+          Ensuite : touchez la notification <strong>« Téléchargement terminé »</strong>,
+          ou ouvrez l'application <strong>Fichiers › Téléchargements</strong>.
+          Restez appuyé sur le fichier puis <strong>Partager</strong> → Outlook, Teams, OneDrive…
+        </p>
+      </div>
+      <div id="export-erreur" hidden>
+        <p class="grand">❌ Le document n'a pas pu être créé</p>
+        <p id="export-message" class="discret"></p>
+      </div>
+      <button id="btn-fermer-export" class="btn btn-secondaire">Fermer</button>
+    </div>
+  </div>
+
+  <!-- Message bref en bas d'écran -->
+  <div id="toast" class="toast" hidden></div>
+
+  <!-- Champs invisibles qui ouvrent l'appareil photo et la galerie -->
+  <input id="entree-camera" type="file" accept="image/*" capture="environment" hidden>
+  <input id="entree-galerie" type="file" accept="image/*" multiple hidden>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

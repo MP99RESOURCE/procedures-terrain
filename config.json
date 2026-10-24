@@ -1,0 +1,21 @@
+{
+  "_aide": "Fichier de configuration. Voir docs/guide-configuration.md. Respectez les guillemets et les virgules.",
+
+  "equipements": [
+    "Compresseur d'air C1",
+    "Convoyeur principal",
+    "Presse hydraulique P1",
+    "Presse hydraulique P2",
+    "Pont roulant",
+    "Chaudière vapeur",
+    "Groupe froid",
+    "Ligne de conditionnement 1",
+    "Ligne de conditionnement 2",
+    "Robot de palettisation"
+  ],
+
+  "champs": {
+    "outillage": true,
+    "duree": true
+  }
+}
