@@ -146,3 +146,48 @@ textarea { resize: vertical; min-height: 96px; }
 }
 
 .etat-sauvegarde { font-size: 15px; opacity: .85; }
+
+/* ---------- Onglets ---------- */
+.onglets {
+  position: sticky; top: 60px; z-index: 4;
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  background: var(--blanc); box-shadow: 0 2px 6px rgba(0, 0, 0, .1);
+}
+.onglets button {
+  min-height: 52px; border: 0; background: transparent;
+  font: inherit; font-size: 16px; font-weight: 700; color: var(--gris);
+  border-bottom: 4px solid transparent; cursor: pointer;
+}
+.onglets button[aria-selected="true"] { color: var(--bleu); border-bottom-color: var(--bleu); }
+.carte h2 { margin: 0 0 4px; }
+
+/* ---------- Champs composés ---------- */
+.champ { margin: 18px 0 4px; }
+.libelle { display: block; font-weight: 600; margin-bottom: 8px; }
+.rangee.ajout input { flex: 1; margin-top: 0; }
+.rangee.ajout .btn { flex: 0 0 auto; }
+.duree { display: flex; align-items: center; gap: 8px; }
+.duree input { width: 80px; margin-top: 0; text-align: center; }
+.compteur { display: flex; align-items: center; gap: 10px; }
+.compteur input { width: 80px; margin-top: 0; text-align: center; }
+.compteur .btn { width: 60px; font-size: 26px; padding: 0; }
+.zone-dictee { margin-bottom: 8px; }
+.zone-dictee .btn-micro { width: 100%; margin-top: 8px; }
+
+/* ---------- Grilles de choix (gros boutons à cocher) ---------- */
+.grille { display: flex; flex-wrap: wrap; gap: 8px; }
+.puce-groupe { position: relative; display: inline-flex; }
+.puce {
+  min-height: 52px; min-width: 76px; padding: 6px 14px;
+  border: 2px solid #c9ced8; border-radius: 10px;
+  background: var(--blanc); color: var(--texte);
+  font: inherit; font-size: 16px; font-weight: 600; cursor: pointer;
+}
+.puce.cochee { background: var(--bleu); border-color: var(--bleu); color: var(--blanc); }
+.puce.cochee::before { content: "✓ "; }
+.puce.perso { border-style: dashed; }
+.puce-retirer {
+  position: absolute; top: -10px; right: -10px;
+  width: 30px; height: 30px; border-radius: 50%; border: 0;
+  background: var(--rouge); color: var(--blanc); font-size: 14px; cursor: pointer;
+}

@@ -2,20 +2,55 @@
   "_aide": "Fichier de configuration. Voir docs/guide-configuration.md. Respectez les guillemets et les virgules.",
 
   "equipements": [
-    "Compresseur d'air C1",
-    "Convoyeur principal",
-    "Presse hydraulique P1",
-    "Presse hydraulique P2",
-    "Pont roulant",
-    "Chaudière vapeur",
-    "Groupe froid",
-    "Ligne de conditionnement 1",
-    "Ligne de conditionnement 2",
-    "Robot de palettisation"
+    "R140", "R150", "R160", "A400", "A410", "A420", "A421", "A431", "A432",
+    "A433", "A434", "A435", "A440", "A450", "A460", "A470", "S500", "S510",
+    "R520", "R521", "S700", "S710", "S720", "H730", "R800", "R810", "R820"
+  ],
+
+  "typesIntervention": [
+    { "id": "production",  "libelle": "Production" },
+    { "id": "preventive",  "libelle": "Maintenance préventive" },
+    { "id": "corrective",  "libelle": "Maintenance corrective" },
+    { "id": "nettoyage",   "libelle": "Nettoyage" },
+    { "id": "controle",    "libelle": "Contrôle / inspection" },
+    { "id": "autre",       "libelle": "Autre", "precision": "Préciser" }
+  ],
+
+  "epi": [
+    { "id": "casque",       "libelle": "Casque",                                  "picto": "casque" },
+    { "id": "lunettes",     "libelle": "Lunettes de sécurité",                    "picto": "lunettes" },
+    { "id": "ecran",        "libelle": "Écran facial",                            "picto": "ecran" },
+    { "id": "gants",        "libelle": "Gants",                                   "picto": "gants", "precision": "Type de gants" },
+    { "id": "chaussures",   "libelle": "Chaussures de sécurité",                  "picto": "chaussures" },
+    { "id": "auditive",     "libelle": "Protection auditive",                     "picto": "auditive" },
+    { "id": "respiratoire", "libelle": "Protection respiratoire",                 "picto": "respiratoire" },
+    { "id": "tablier",      "libelle": "Vêtement / tablier de protection chimique", "picto": "tablier" },
+    { "id": "harnais",      "libelle": "Harnais antichute",                       "picto": "harnais" },
+    { "id": "autre",        "libelle": "Autre",                                   "picto": "autre", "precision": "Préciser" }
+  ],
+
+  "produits": [
+    "Eau", "Air", "Éthanol 99 %", "Éthanol dilué", "Waterglass",
+    "Acide chlorhydrique (HCl)", "Soude caustique (NaOH)", "MTES"
+  ],
+
+  "conditions": [
+    { "id": "consignation-elec",   "libelle": "Consignation électrique" },
+    { "id": "consignation-autres", "libelle": "Consignation autres énergies (pneumatique, hydraulique, thermique, mécanique)" },
+    { "id": "vidange",             "libelle": "Équipement vidangé / rincé / dépressurisé" },
+    { "id": "permis-travail",      "libelle": "Permis de travail" },
+    { "id": "permis-feu",          "libelle": "Permis de feu" },
+    { "id": "hauteur",             "libelle": "Travail en hauteur" },
+    { "id": "confine",             "libelle": "Espace confiné" },
+    { "id": "atex",                "libelle": "Zone ATEX" },
+    { "id": "balisage",            "libelle": "Balisage / coactivité" },
+    { "id": "autre",               "libelle": "Autre", "precision": "Préciser" }
   ],
 
   "champs": {
+    "duree": true,
+    "intervenants": true,
     "outillage": true,
-    "duree": true
+    "pieces": true
   }
 }

@@ -30,34 +30,102 @@
       <span id="etat-sauvegarde" class="etat-sauvegarde"></span>
     </header>
 
+    <!-- Onglets -->
+    <nav class="onglets" role="tablist">
+      <button type="button" role="tab" data-onglet="infos">Infos</button>
+      <button type="button" role="tab" data-onglet="securite">Sécurité</button>
+      <button type="button" role="tab" data-onglet="etapes">Étapes</button>
+      <button type="button" role="tab" data-onglet="fin">Fin</button>
+    </nav>
+
     <main class="contenu">
-      <!-- En-tête de la procédure -->
-      <details id="bloc-entete" class="carte" open>
-        <summary>En-tête de la procédure</summary>
-        <label>Titre <span class="obligatoire">(obligatoire)</span>
-          <input id="champ-titre" data-champ="titre" type="text" autocomplete="off" placeholder="Ex. : Remplacement courroie convoyeur">
-        </label>
-        <label>Équipement
-          <input id="champ-equipement" data-champ="equipement" type="text" list="liste-equipements" autocomplete="off" placeholder="Choisir ou écrire">
-          <datalist id="liste-equipements"></datalist>
-        </label>
-        <label>Auteur
-          <input id="champ-auteur" data-champ="auteur" type="text" autocomplete="name" placeholder="Prénom Nom">
-        </label>
-        <label id="ligne-outillage">Outillage / pièces nécessaires
-          <textarea data-champ="outillage" rows="2"></textarea>
-        </label>
-        <label id="ligne-duree">Durée estimée
-          <input data-champ="duree" type="text" placeholder="Ex. : 45 min">
-        </label>
-        <p class="discret">Date : <span id="texte-date"></span></p>
-      </details>
 
-      <!-- Les étapes -->
-      <div id="liste-etapes"></div>
-      <p id="aide-etapes" class="aide">Touchez <strong>📷 Nouvelle étape</strong> pour photographier la première étape.</p>
+      <!-- ========== Onglet INFOS : identification + prérequis ========== -->
+      <div id="onglet-infos" class="onglet" role="tabpanel">
+        <div class="carte">
+          <h2>Identification</h2>
 
-      <button id="btn-supprimer-procedure" class="btn btn-danger-discret">Supprimer ce brouillon</button>
+          <label>Titre de l'opération <span class="obligatoire">(obligatoire)</span>
+            <input id="champ-titre" data-champ="titre" type="text" autocomplete="off" placeholder="Ex. : Remplacement garniture pompe">
+          </label>
+
+          <div class="champ">
+            <span class="libelle">Équipement(s) concerné(s)</span>
+            <div id="zone-equipements"></div>
+            <div class="rangee ajout">
+              <input id="saisie-equipement" type="text" autocomplete="off" placeholder="Autre équipement…">
+              <button id="btn-ajouter-equipement" type="button" class="btn btn-secondaire">＋ Ajouter</button>
+            </div>
+          </div>
+
+          <div class="champ">
+            <span class="libelle">Type d'intervention</span>
+            <div id="zone-type"></div>
+            <label id="ligne-type-precision" hidden><span id="texte-type-precision">Préciser</span>
+              <input data-champ="typeAutre" type="text" autocomplete="off">
+            </label>
+          </div>
+
+          <div id="ligne-duree" class="champ">
+            <span class="libelle">Durée estimée</span>
+            <div class="duree">
+              <input data-champ="dureeH" type="text" inputmode="numeric" maxlength="3" aria-label="Heures"> <span>h</span>
+              <input data-champ="dureeMin" type="text" inputmode="numeric" maxlength="2" aria-label="Minutes"> <span>min</span>
+            </div>
+            <p id="duree-ancienne" class="discret" hidden></p>
+          </div>
+
+          <div id="ligne-intervenants" class="champ">
+            <span class="libelle">Nombre d'intervenants</span>
+            <div class="compteur">
+              <button type="button" class="btn btn-secondaire" data-pas="-1" aria-label="Moins">−</button>
+              <input data-champ="nbIntervenants" type="text" inputmode="numeric" maxlength="2" aria-label="Nombre d'intervenants">
+              <button type="button" class="btn btn-secondaire" data-pas="1" aria-label="Plus">＋</button>
+            </div>
+          </div>
+
+          <label>Rédacteur
+            <input data-champ="auteur" type="text" autocomplete="name" placeholder="Prénom Nom">
+          </label>
+          <p class="discret">Date de rédaction : <span id="texte-date"></span></p>
+        </div>
+
+        <div class="carte">
+          <h2>Prérequis</h2>
+          <div id="ligne-outillage" class="zone-dictee">
+            <label>Outillage
+              <textarea data-champ="prerequis.outillage" rows="2" placeholder="Clés, appareils de mesure…"></textarea>
+            </label>
+            <button type="button" class="btn btn-secondaire btn-micro">🎤 Dicter</button>
+            <p class="info-micro"></p>
+          </div>
+          <div id="ligne-pieces" class="zone-dictee">
+            <label>Pièces / consommables
+              <textarea data-champ="prerequis.pieces" rows="2" placeholder="Joints, produits, chiffons…"></textarea>
+            </label>
+            <button type="button" class="btn btn-secondaire btn-micro">🎤 Dicter</button>
+            <p class="info-micro"></p>
+          </div>
+        </div>
+
+        <button id="btn-supprimer-procedure" class="btn btn-danger-discret">Supprimer ce brouillon</button>
+      </div>
+
+      <!-- ========== Onglet SÉCURITÉ ========== -->
+      <div id="onglet-securite" class="onglet" role="tabpanel" hidden>
+        <p class="aide">L'encart sécurité (EPI, produits, conditions, vigilance) arrive à l'étape C.</p>
+      </div>
+
+      <!-- ========== Onglet ÉTAPES ========== -->
+      <div id="onglet-etapes" class="onglet" role="tabpanel" hidden>
+        <div id="liste-etapes"></div>
+        <p id="aide-etapes" class="aide">Touchez <strong>📷 Nouvelle étape</strong> pour photographier la première étape.</p>
+      </div>
+
+      <!-- ========== Onglet FIN D'INTERVENTION ========== -->
+      <div id="onglet-fin" class="onglet" role="tabpanel" hidden>
+        <p class="aide">La fin d'intervention (contrôles, remise en service, nettoyage) arrive à l'étape D.</p>
+      </div>
     </main>
 
     <!-- Barre du bas, toujours visible -->

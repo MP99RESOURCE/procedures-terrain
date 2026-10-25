@@ -23,6 +23,8 @@ const FICHIERS = [
   'config.json',
   'manifest.webmanifest',
   'js/app.js',
+  'js/donnees.js',
+  'js/grille.js',
   'js/stockage.js',
   'js/photo.js',
   'js/dictee.js',
@@ -31,6 +33,10 @@ const FICHIERS = [
   'modele/modele-procedure.docx',
   'icones/app-192.png',
   'icones/app-512.png',
+  // Pictogrammes EPI : SVG pour l'écran, PNG pour le document Word
+  ...['casque', 'lunettes', 'ecran', 'gants', 'chaussures', 'auditive',
+      'respiratoire', 'tablier', 'harnais', 'autre']
+    .flatMap((nom) => [`assets/pictos/epi/${nom}.svg`, `assets/pictos/epi/${nom}.png`]),
 ];
 
 // Installation : copie de tous les fichiers
